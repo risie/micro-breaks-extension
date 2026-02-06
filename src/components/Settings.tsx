@@ -1,9 +1,11 @@
 import useInterval from '../hooks/useInterval';
-import { INTERVAL } from '../common/constants';
+import { Interval, INTERVAL } from '../common/constants';
 
-export default function Settings() {
-  const { interval, handleChangeInterval } = useInterval()
-
+interface Props {
+  interval: Interval
+  onChange: (Interval: Interval) => void
+}
+export default function Settings({ interval, onChange }: Props) {
   return (
     <div className="w-full flex items-center justify-center">
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full h-full flex flex-col items-center justify-center p-4">
@@ -16,7 +18,7 @@ export default function Settings() {
             value="5"
             aria-label="5 min"
             checked={interval === INTERVAL.FIVE}
-            onChange={() => handleChangeInterval(INTERVAL.FIVE)}
+            onChange={() => onChange(INTERVAL.FIVE)}
           />
           <input
             className="join-item btn flex-1"
@@ -25,7 +27,7 @@ export default function Settings() {
             value="10"
             aria-label="10 min"
             checked={interval === INTERVAL.TEN}
-            onChange={() => handleChangeInterval(INTERVAL.TEN)}
+            onChange={() => onChange(INTERVAL.TEN)}
           />
           <input
             className="join-item btn flex-1"
@@ -34,7 +36,7 @@ export default function Settings() {
             value="15"
             aria-label="15 min"
             checked={interval === INTERVAL.FIFTEEN}
-            onChange={() => handleChangeInterval(INTERVAL.FIFTEEN)}
+            onChange={() => onChange(INTERVAL.FIFTEEN)}
           />
         </div>
       </fieldset>
