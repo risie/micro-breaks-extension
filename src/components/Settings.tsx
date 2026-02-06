@@ -1,22 +1,8 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import useInterval from '../hooks/useInterval';
+import { INTERVAL } from '../common/constants';
 
 export default function Settings() {
-  const [breakTime, setBreakTime] = useState('');
-
-  // Load the saved break time from local storage when the component mounts
-  useEffect(() => {
-    const savedTime = localStorage.getItem('breakTime');
-    if (savedTime) {
-      setBreakTime(savedTime);
-    }
-  }, []);
-
-  // Function to handle change in radio button selection
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value
-    setBreakTime(value);
-    localStorage.setItem('breakTime', value);
-  };
+  const { interval, handleChangeInterval } = useInterval()
 
   return (
     <div className="w-full flex items-center justify-center">
@@ -29,8 +15,8 @@ export default function Settings() {
             name="options"
             value="5"
             aria-label="5 min"
-            checked={breakTime === '5'}
-            onChange={handleChange}
+            checked={interval === INTERVAL.FIVE}
+            onChange={() => handleChangeInterval(INTERVAL.FIVE)}
           />
           <input
             className="join-item btn flex-1"
@@ -38,8 +24,8 @@ export default function Settings() {
             name="options"
             value="10"
             aria-label="10 min"
-            checked={breakTime === '10'}
-            onChange={handleChange}
+            checked={interval === INTERVAL.TEN}
+            onChange={() => handleChangeInterval(INTERVAL.TEN)}
           />
           <input
             className="join-item btn flex-1"
@@ -47,8 +33,8 @@ export default function Settings() {
             name="options"
             value="15"
             aria-label="15 min"
-            checked={breakTime === '15'}
-            onChange={handleChange}
+            checked={interval === INTERVAL.FIFTEEN}
+            onChange={() => handleChangeInterval(INTERVAL.FIFTEEN)}
           />
         </div>
       </fieldset>
