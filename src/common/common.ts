@@ -3,9 +3,9 @@ export const ACTIVE_STATE = {
   OFF: "OFF"
 } as const
 
-export type ActiveState = keyof typeof ACTIVE_STATE
-
 export const STORAGE_KEY_ACTIVE = 'microbreaks-active'
+
+export type ActiveState = keyof typeof ACTIVE_STATE
 
 export const INTERVAL = {
   FIVE: "FIVE",
@@ -13,6 +13,6 @@ export const INTERVAL = {
   FIFTEEN: "FIFTEEN"
 } as const
 
-export type Interval = keyof typeof INTERVAL
-
 export const STORAGE_KEY_INTERVAL = 'microbreaks-interval'
+
+export type Interval = keyof typeof INTERVAL

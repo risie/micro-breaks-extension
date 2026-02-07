@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ACTIVE_STATE, ActiveState, STORAGE_KEY_ACTIVE } from "../common/constants";
+import { ActiveState, ACTIVE_STATE, STORAGE_KEY_ACTIVE } from "../common/common";
 
 const isStateValue = (item: string): item is ActiveState => item in ACTIVE_STATE;
 

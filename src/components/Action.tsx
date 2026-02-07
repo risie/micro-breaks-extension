@@ -1,6 +1,3 @@
-import { ACTIVE_STATE } from "../common/constants";
-import useIsTimerActive from "../hooks/useIsTimerActive";
-
 interface Props {
   active: boolean
   onClick: () => void

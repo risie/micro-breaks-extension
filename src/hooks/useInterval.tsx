@@ -1,6 +1,6 @@
-
 import { useState, useEffect } from "react";
-import { Interval, INTERVAL, STORAGE_KEY_INTERVAL, } from "../common/constants";
+import { Interval, INTERVAL, STORAGE_KEY_INTERVAL } from "../common/common";
+
 
 const isIntervalValue = (item: string): item is Interval => item in INTERVAL;
 

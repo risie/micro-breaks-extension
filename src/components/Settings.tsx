@@ -1,10 +1,10 @@
-import useInterval from '../hooks/useInterval';
-import { Interval, INTERVAL } from '../common/constants';
+import { Interval, INTERVAL } from "../common/common";
 
 interface Props {
   interval: Interval | undefined
   onChange: (Interval: Interval) => void
 }
+
 export default function Settings({ interval, onChange }: Props) {
   return (
     <div className="w-full flex items-center justify-center">
