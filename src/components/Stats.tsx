@@ -1,4 +1,4 @@
-export default function Stats() {
+export function Stats() {
   return (
     <div className="stats shadow">
       <div className="stat">

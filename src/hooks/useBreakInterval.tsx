@@ -6,7 +6,7 @@ const isIntervalValue = (item: string): item is Interval => item in INTERVAL;
 
 const setLocalStorage = (number: Interval) => localStorage.setItem(STORAGE_KEY_INTERVAL, number)
 
-export default function useInterval() {
+export function useBreakInterval() {
   const [interval, setInterval] = useState<Interval | undefined>();
 
   useEffect(() => {

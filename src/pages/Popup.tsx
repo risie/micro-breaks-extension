@@ -1,10 +1,10 @@
-import Heading from '../components/Heading';
-import Stats from '../components/Stats';
-import Action from '../components/Action';
-import useBreakInterval from '../hooks/useBreakInterval';
-import useIsTimerActive from '../hooks/useIsTimerActive';
-import Settings from '../components/Settings';
-import Layout from '../layouts/Layout';
+import { Action } from "../components/Action";
+import { Heading } from "../components/Heading";
+import { Settings } from "../components/Settings";
+import { Stats } from "../components/Stats";
+import { useBreakInterval } from "../hooks/useBreakInterval";
+import { useIsTimerActive } from "../hooks/useIsTimerActive";
+import { Layout } from "../layouts/Layout";
 
 
 export default function Popup() {

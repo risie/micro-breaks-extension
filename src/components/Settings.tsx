@@ -5,7 +5,7 @@ interface Props {
   onChange: (Interval: Interval) => void
 }
 
-export default function Settings({ interval, onChange }: Props) {
+export function Settings({ interval, onChange }: Props) {
   return (
     <div className="w-full flex items-center justify-center">
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full h-full flex flex-col items-center justify-center p-4">

@@ -3,7 +3,7 @@ interface Props {
   onClick: () => void
 }
 
-export default function Action({ active, onClick }: Props) {
+export function Action({ active, onClick }: Props) {
   const buttonText = active ? "Stop" : "Go!"
 
   return (

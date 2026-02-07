@@ -5,7 +5,7 @@ const isStateValue = (item: string): item is ActiveState => item in ACTIVE_STATE
 
 const setLocalStorage = (state: ActiveState) => localStorage.setItem(STORAGE_KEY_ACTIVE, state)
 
-export default function useIsTimerActive() {
+export function useIsTimerActive() {
   const [active, setActive] = useState<ActiveState>(ACTIVE_STATE.OFF);
 
   useEffect(() => {
