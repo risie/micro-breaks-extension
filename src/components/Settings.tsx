@@ -2,7 +2,7 @@ import useInterval from '../hooks/useInterval';
 import { Interval, INTERVAL } from '../common/constants';
 
 interface Props {
-  interval: Interval
+  interval: Interval | undefined
   onChange: (Interval: Interval) => void
 }
 export default function Settings({ interval, onChange }: Props) {

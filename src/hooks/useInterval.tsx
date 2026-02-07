@@ -7,7 +7,7 @@ const isIntervalValue = (item: string): item is Interval => item in INTERVAL;
 const setLocalStorage = (number: Interval) => localStorage.setItem(STORAGE_KEY_INTERVAL, number)
 
 export default function useInterval() {
-  const [interval, setInterval] = useState<Interval>(INTERVAL.TEN);
+  const [interval, setInterval] = useState<Interval | undefined>();
 
   useEffect(() => {
     const currentInterval = localStorage.getItem(STORAGE_KEY_INTERVAL);
