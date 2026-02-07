@@ -23,5 +23,7 @@ export default function useIsTimerActive() {
     setLocalStorage(newActiveState);
   };
 
-  return { active, handleToggleActive }
+  const isActive = active === ACTIVE_STATE.ON
+
+  return { isActive, handleToggleActive }
 }
