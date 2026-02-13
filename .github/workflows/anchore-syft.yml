@@ -1,23 +1,24 @@
-name: Anchore Syft SBOM scan
+name: Generate SBOM
 
 on:
   push:
-    branches: [ "main" ]
-
-permissions:
-  contents: write
+    branches: [main]
+  release:
+    types: [published]
+  pull_request:
+    branches: [main]
 
 jobs:
-  Anchore-Build-Scan:
-    permissions:
-      contents: write # required to upload to the Dependency submission API
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
     steps:
-    - name: Checkout the code
-      uses: actions/checkout@v4
-    - name: Scan the image and upload dependency results
-      uses: anchore/sbom-action@bb716408e75840bbb01e839347cd213767269d4a
-      with:
-        path: ../../package-lock.json
-        artifact-name: image.spdx.json
-        dependency-snapshot: true
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Generate sbom
+        uses: anchore/sbom-action@v0
+        with:
+          path: .
+          output-file: sbom.json
