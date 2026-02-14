@@ -18,13 +18,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Generate sbom
+      - name: Create SBOM
         uses: anchore/sbom-action@v0
+        id: sbom
         with:
-          path: .
           format: cyclonedx-json
+          output-file: "${{ github.event.repository.name }}-sbom.cyclonedx.json"
 
       - name: Upload release sbom
         uses: anchore/sbom-action/publish-sbom@v0
         with:
-          sbom-artifact-match: ".*\\.cyclonedx$"
+          sbom-artifact-match: ".*\\-sbom.cyclonedx.json$"
+
+      # - name: Upload SBOM as artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: sbom.json
+      #     path:
+      #       sarif_file: ${{ steps.sbom.outputs.sbom }}
