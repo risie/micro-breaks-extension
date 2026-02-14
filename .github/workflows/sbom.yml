@@ -22,4 +22,3 @@ jobs:
         uses: anchore/sbom-action@v0
         with:
           format: cyclonedx-json
-          output-file: "$${{ github.event.respoitory.name }}-{{ github.event.name }}-${{ github.sha }}.cyclonedx.json"
