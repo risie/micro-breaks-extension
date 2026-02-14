@@ -18,12 +18,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Install and build
+      - name: Install node
         uses: actions/setup-node@v6
         with:
           node-version: 24
-      - run: npm ci
-      - run: npm run build
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
 
       - name: Create SBOM
         uses: anchore/sbom-action@v0
