@@ -24,10 +24,12 @@ jobs:
           path: .
           format: cyclonedx-json
 
+      - name: List Files After SBOM Generation
+        run: ls -R
+
       - name: Upload SBOM and Artifacts
         if: github.event_name == 'release'
         uses: actions/upload-artifact@v4
         with:
           name: release-artifacts-${{ github.ref_name }}
-          path: |
-            *cyclonedx.json
+          path: sbom/*.cyclonedx.json
