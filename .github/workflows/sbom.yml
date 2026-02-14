@@ -25,14 +25,7 @@ jobs:
           format: cyclonedx-json
           output-file: "${{ github.event.repository.name }}-sbom.cyclonedx.json"
 
-      - name: Upload release sbom
-        uses: anchore/sbom-action/publish-sbom@v0
-        with:
-          sbom-artifact-match: ".*\\-sbom.cyclonedx.json$"
-
-      # - name: Upload SBOM as artifact
-      #   uses: actions/upload-artifact@v2
+      # - name: Upload release sbom
+      #   uses: anchore/sbom-action/publish-sbom@v0
       #   with:
-      #     name: sbom.json
-      #     path:
-      #       sarif_file: ${{ steps.sbom.outputs.sbom }}
+      #     sbom-artifact-match: ".*\\cyclonedx.json$"
