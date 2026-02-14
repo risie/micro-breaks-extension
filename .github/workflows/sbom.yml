@@ -22,5 +22,4 @@ jobs:
         uses: anchore/sbom-action@v0
         with:
           path: .
-          name: sbom-${{ github.sha }}
           format: cyclonedx-json
