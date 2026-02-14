@@ -22,5 +22,4 @@ jobs:
         uses: anchore/sbom-action@v0
         with:
           path: .
-          output-file: sbom.json
           format: cyclonedx
