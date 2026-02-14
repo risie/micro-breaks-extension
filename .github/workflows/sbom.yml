@@ -9,7 +9,7 @@ on:
     types: [published]
 
 jobs:
-  sbom:
+  build:
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -20,12 +20,6 @@ jobs:
 
       - name: Create SBOM
         uses: anchore/sbom-action@v0
-        id: sbom
         with:
           format: cyclonedx-json
-          output-file: "${{ github.event.repository.name }}-sbom.cyclonedx.json"
-
-      # - name: Upload release sbom
-      #   uses: anchore/sbom-action/publish-sbom@v0
-      #   with:
-      #     sbom-artifact-match: ".*\\cyclonedx.json$"
+          output-file: "$${{ github.event.respoitory.name }}-{{ github.event.name}}-${{ github.sha }}.cyclonedx.json"
