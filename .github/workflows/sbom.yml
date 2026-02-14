@@ -27,4 +27,4 @@ jobs:
       - name: Upload release sbom
         uses: anchore/sbom-action/publish-sbom@v0
         with:
-          sbom-artifact-match: ".*\\.cyclnedx$"
+          sbom-artifact-match: ".*\\.cyclonedx$"
