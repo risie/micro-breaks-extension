@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc  && vite build",
-    "sbom": "cyclonedx-npm --output-file ./sbom/sbom.json"
+    "build": "tsc  && vite build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -14,7 +13,6 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@cyclonedx/cyclonedx-npm": "^4.1.2",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@types/webextension-polyfill": "^0.12.4",
