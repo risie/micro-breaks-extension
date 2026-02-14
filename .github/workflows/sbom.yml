@@ -1,0 +1,26 @@
+name: Generate SBOM
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Generate sbom
+        uses: anchore/sbom-action@v0
+        with:
+          path: .
+          name: sbom-${{ github.sha }}
+          format: cyclonedx-json
