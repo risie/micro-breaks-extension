@@ -27,7 +27,7 @@ jobs:
         run: npm ci
 
       - name: Build project
-        run: echo pwd && echo ls -la && npm run build
+        run: pwd && ls -la && npm run build
 
       - name: Create SBOM
         uses: anchore/sbom-action@v0
