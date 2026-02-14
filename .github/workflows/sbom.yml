@@ -9,7 +9,7 @@ on:
     types: [published]
 
 jobs:
-  validate:
+  sbom:
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -23,3 +23,11 @@ jobs:
         with:
           path: .
           format: cyclonedx-json
+
+      - name: Upload SBOM and Artifacts
+        if: github.event_name == 'release'
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-artifacts-${{ github.ref_name }}
+          path: |
+            *cyclonedx.json
