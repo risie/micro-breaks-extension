@@ -32,6 +32,7 @@ jobs:
 
       - name: Create SBOM
         uses: anchore/sbom-action@v0
+        id: sbom
         with:
           upload-release-assets: false
           format: cyclonedx-json
@@ -44,4 +45,16 @@ jobs:
           sbom: "${{ github.event.repository.name }}-sbom.cyclonedx.json"
           fail-build: false
           severity-cutoff: medium
-          output-format: json
+          output-format: sarif
+
+      - name: upload Grype scan SARIF report
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+
+      - name: Upload SBOM as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sbom.json
+          path: |
+          sarif_file: ${{ steps.sbom.outputs.sbom }}
