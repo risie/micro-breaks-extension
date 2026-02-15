@@ -56,5 +56,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: sbom.json
-          path: |
-          sarif_file: ${{ steps.sbom.outputs.sbom }}
+          path: sarif_file: ${{ steps.sbom.outputs.sbom }}
