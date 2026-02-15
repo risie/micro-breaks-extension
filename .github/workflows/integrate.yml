@@ -7,6 +7,7 @@ on:
     branches: [main]
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -32,4 +33,15 @@ jobs:
       - name: Create SBOM
         uses: anchore/sbom-action@v0
         with:
+          upload-release-assets: false
           format: cyclonedx-json
+          output-file: "${{ github.event.repository.name }}-sbom.cyclonedx.json"
+
+      - name: Scan SBOM
+        uses: anchore/scan-action@v6
+        id: scan
+        with:
+          sbom: "${{ github.event.repository.name }}-sbom.cyclonedx.json"
+          fail-build: false
+          severity-cutoff: medium
+          output-format: json
