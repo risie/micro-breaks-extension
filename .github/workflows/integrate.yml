@@ -1,0 +1,59 @@
+name: Generate SBOM
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Install node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Create SBOM
+        uses: anchore/sbom-action@v0
+        id: sbom
+        with:
+          upload-release-assets: false
+          format: cyclonedx-json
+          output-file: "${{ github.event.repository.name }}-sbom.cyclonedx.json"
+
+      - name: Scan SBOM
+        uses: anchore/scan-action@v6
+        id: scan
+        with:
+          sbom: "${{ github.event.repository.name }}-sbom.cyclonedx.json"
+          fail-build: false
+          severity-cutoff: medium
+          output-format: sarif
+
+      - name: upload Grype scan SARIF report
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+          category: sca
+
+      - name: Publish SBOM
+        uses: anchore/sbom-action/publish-sbom@v0
+        with:
+          sbom-artifact-match: ".*\\.cyclonedx$"
